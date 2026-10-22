@@ -36,3 +36,6 @@ jobs:
 
       - name: Run all JUnit 5 test cases
         run: mvn -B test
+
+      - name: Build Docker image
+        run: docker build --tag calculator:ci .

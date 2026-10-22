@@ -12,7 +12,7 @@ public class Calculator {
         return switch (op) {
             case "+" -> x + y;
             case "-" -> x - y;
-            case "*" -> x * y;
+            case "*", "x", "X" -> x * y;
             case "/" -> {
                 if (y == 0) throw new ArithmeticException("division by zero");
                 yield x / y;
