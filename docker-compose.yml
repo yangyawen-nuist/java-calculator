@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: calculator-backend:lab7
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: "8000"
+      LOG_LEVEL: "INFO"
+    restart: on-failure
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: calculator-web:lab7
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: on-failure

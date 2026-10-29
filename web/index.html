@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="calculator-shell">
+        <header>
+            <p class="eyebrow">DOCKER COMPOSE LAB</p>
+            <h1>Calculator</h1>
+            <p class="subtitle">Web frontend and Java API running as separate services.</p>
+        </header>
+
+        <form id="calculator-form" class="calculator" novalidate>
+            <label>
+                First number
+                <input id="left" name="left" type="number" step="any" value="12" required>
+            </label>
+
+            <fieldset>
+                <legend>Operation</legend>
+                <div class="operations" role="group" aria-label="Operation">
+                    <button type="button" class="operation active" data-operator="+">+</button>
+                    <button type="button" class="operation" data-operator="-">−</button>
+                    <button type="button" class="operation" data-operator="*">×</button>
+                    <button type="button" class="operation" data-operator="/">÷</button>
+                </div>
+            </fieldset>
+
+            <label>
+                Second number
+                <input id="right" name="right" type="number" step="any" value="8" required>
+            </label>
+
+            <button class="calculate-button" type="submit">Calculate</button>
+        </form>
+
+        <section class="result-panel" aria-live="polite">
+            <span class="result-label">Result</span>
+            <strong id="result">20</strong>
+            <p id="status">Ready to calculate</p>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

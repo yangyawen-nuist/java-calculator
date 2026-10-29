@@ -32,10 +32,33 @@ jobs:
           cache: maven
 
       - name: Compile Java source files
+        working-directory: backend
         run: mvn -B clean compile
 
       - name: Run all JUnit 5 test cases
+        working-directory: backend
         run: mvn -B test
 
-      - name: Build Docker image
-        run: docker build --tag calculator:ci .
+      - name: Build backend Docker image
+        run: docker build --tag calculator-backend:ci ./backend
+
+  compose-build:
+    name: Docker Compose build validation
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout complete repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Show Docker Compose version
+        run: docker compose version
+
+      - name: Validate Compose configuration
+        run: docker compose config
+
+      - name: Build all Compose services
+        run: docker compose build
